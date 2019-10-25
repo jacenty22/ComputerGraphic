@@ -295,6 +295,12 @@ namespace ComputreGraphic
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyname));
             }
         }
+
+        private void OpenColorPicker(object sender, RoutedEventArgs e)
+        {
+            ColorPicker colorPicker = new ColorPicker();
+            colorPicker.ShowDialog();
+        }
     }
 }
 

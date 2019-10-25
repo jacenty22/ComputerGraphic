@@ -30,6 +30,9 @@
                 <MenuItem FontSize="13" Header="_Wczytaj" Click="OpenFileClick"/>
                 <MenuItem FontSize="13" Header="_Zapisz" Click="SaveFileClick"/>
             </MenuItem>
+            <MenuItem Header="_Kolor">
+                <MenuItem FontSize="13" Header="Wybierz kolor" Click="OpenColorPicker"/>
+            </MenuItem>
         </Menu>
 
         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2" Background="Silver">

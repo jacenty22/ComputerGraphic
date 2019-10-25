@@ -1,0 +1,62 @@
+﻿<Window x:Class="ComputreGraphic.ColorPicker"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ComputreGraphic"
+        mc:Ignorable="d"
+        ResizeMode="CanMinimize"
+        Title="ColorPicker" Height="330" Width="460">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="270"/>
+            <ColumnDefinition Width="160"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Margin="20,20,0,0">
+            <RadioButton x:Name="RGBRadioButton" GroupName="CurrentColor" Content="RGB"/>
+            <RadioButton x:Name="CMYKRadioButton" GroupName="CurrentColor" Content="CMYK"/>
+        </StackPanel>
+
+        <Canvas x:Name="ColorCanvas" Width="120" Height="80" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right">
+            <Canvas.Background>
+                <SolidColorBrush Color="{Binding SelectedColor}"/>
+            </Canvas.Background>
+        </Canvas>
+
+        <DockPanel Margin="5,0,0,0" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center">
+            <Label x:Name="FirstSliderLabel" DockPanel.Dock="Left" Content="R: "/>
+            <Slider Value="50" x:Name="FirstSlider" TickFrequency="1" IsSnapToTickEnabled="True" Width="200" Margin="0,5,0,0" Minimum="0" Maximum="255" HorizontalAlignment="Left"/>
+            <TextBox DockPanel.Dock="Right" Width="30" Text="{Binding ElementName=FirstSlider,Path=Value, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center"/>
+        </DockPanel>
+        
+        <DockPanel Margin="5,0,0,0" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center">
+            <Label x:Name="SecondSliderLabel" DockPanel.Dock="Left" Content="G: "/>
+            <Slider x:Name="SecondSlider" TickFrequency="1" IsSnapToTickEnabled="True"  Width="200" Margin="0,5,0,0" Minimum="0" Maximum="255" HorizontalAlignment="Left"/>
+            <TextBox DockPanel.Dock="Right" Width="30" Text="{Binding ElementName=SecondSlider,Path=Value, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center"/>
+        </DockPanel>
+        
+        <DockPanel Margin="5,0,0,0" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center">
+            <Label x:Name="ThirdSliderLabel" DockPanel.Dock="Left" Content="B: "/>
+            <Slider x:Name="ThirdSlider" TickFrequency="1" IsSnapToTickEnabled="True" Width="200" Margin="0,5,0,0" Minimum="0" Maximum="255" HorizontalAlignment="Left"/>
+            <TextBox DockPanel.Dock="Right" Width="30" Text="{Binding ElementName=ThirdSlider,Path=Value, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center"/>
+        </DockPanel>
+
+        <DockPanel Margin="5,0,0,0" Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" Visibility="{Binding FourthSliderVisibility}">
+            <Label x:Name="FourthSliderLabel" DockPanel.Dock="Left"/>
+            <Slider x:Name="FourthSlider" TickFrequency="1" IsSnapToTickEnabled="True" Width="200" Margin="0,5,0,0" Minimum="0" Maximum="255" HorizontalAlignment="Left"/>
+            <TextBox DockPanel.Dock="Right" Width="30" Text="{Binding ElementName=FourthSlider,Path=Value, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center"/>
+        </DockPanel>
+
+        <Label x:Name="ColorModelNameLabel" Grid.Column="1" Grid.Row="1" Content="CMYK" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left"/>
+        <Label x:Name="ColorModelValuesLabel" Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+    </Grid>
+</Window>
