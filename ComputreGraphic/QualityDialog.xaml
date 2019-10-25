@@ -1,0 +1,15 @@
+﻿<Window x:Class="ComputreGraphic.QualityDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ComputreGraphic"
+        mc:Ignorable="d"
+        ResizeMode="CanMinimize"
+        Title="QualityDialog" Height="200" Width="300">
+    <StackPanel>
+        <TextBlock Margin="20" Text="Wprowadź stopień kompresji pliku JPEG" HorizontalAlignment="Center"/>
+        <TextBox x:Name="QualityTextBox" Width="70" KeyDown="QualityTextBox_KeyDown"/>
+        <Button Margin="20" Content="OK" Click="OkButtonClick" Width="50"/>
+    </StackPanel>
+</Window>

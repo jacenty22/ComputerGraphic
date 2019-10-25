@@ -1,0 +1,88 @@
+﻿<Window x:Class="ComputreGraphic.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ComputreGraphic"
+        mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Background="LightGray"
+        Title="ImageEditor" Height="450" Width="800">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <Menu FontSize="14" Grid.Row="0" Grid.ColumnSpan="2">
+            <MenuItem Header="_Plik">
+                <MenuItem FontSize="13" Header="_Wczytaj" Click="OpenFileClick"/>
+                <MenuItem FontSize="13" Header="_Zapisz" Click="SaveFileClick"/>
+            </MenuItem>
+        </Menu>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2" Background="Silver">
+
+            <RadioButton GroupName="choosenShape" Checked="ChangeShape" x:Name="RectangleRadioButton" Content="Prostokąt" FontSize="13" Margin="5"/>
+            <RadioButton GroupName="choosenShape" Checked="ChangeShape" x:Name="CircleRadioButton" Content="Elipsa" FontSize="13" Margin="5"/>
+            <RadioButton GroupName="choosenShape" Checked="ChangeShape" x:Name="LineRadioButton" Content="Linia" FontSize="13" Margin="5"/>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="110"/>
+                    <ColumnDefinition Width="110"/>
+                    <ColumnDefinition Width="110"/>
+                    <ColumnDefinition Width="110"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="35"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Column="0"  Content="{Binding FirstParamDraw}"/>
+                <Label Grid.Column="1"  Content="{Binding SecondParamDraw}"/>
+                <Label Grid.Column="2"  Content="{Binding ThirdParamDraw}"/>
+                <Label Grid.Column="3"  Content="{Binding FourthParamDraw}"/>
+
+                <TextBox Grid.Row="1" Grid.Column="0" PreviewTextInput="NumberValidationTextBox" x:Name="XPositionTextBox" Width="100" Margin="5" BorderBrush="Blue"/>
+                <TextBox Grid.Row="1" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" x:Name="YPositionTextBox" Width="100" Margin="5" BorderBrush="Blue"/>
+                <TextBox Grid.Row="1" Grid.Column="2" PreviewTextInput="NumberValidationTextBox" x:Name="widthTextBox" Width="100" Margin="5" BorderBrush="Blue"/>
+                <TextBox Grid.Row="1" Grid.Column="3" PreviewTextInput="NumberValidationTextBox" x:Name="heightTextBox" Width="100" Margin="5" BorderBrush="Blue"/>
+            </Grid>
+            <Button Content="Rysuj" Margin="10,5,0,0" Click="DrawButtonHandle"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2">
+            <Label Content="Funkcja myszy"/>
+            <RadioButton GroupName="MouseHover" x:Name="RadioButtonDraw" Checked="ChangeMouseFunction" Content="Rysowanie"/>
+            <RadioButton GroupName="MouseHover" x:Name="RadioButtonEdit" Checked="ChangeMouseFunction" Content="Edycja"/>
+            <Label Visibility="{Binding EditParamsVisibility}" Content="{Binding FirstParam}" Width="80" HorizontalAlignment="Center" Margin="0,20,0,0"/>
+            <TextBox Visibility="{Binding EditParamsVisibility}" Width="80" x:Name="firstParamTextBox" PreviewTextInput="NumberValidationTextBox"/>
+            <Label Visibility="{Binding EditParamsVisibility}" Content="{Binding SecondParam}" Width="80" HorizontalAlignment="Center"/>
+            <TextBox Visibility="{Binding EditParamsVisibility}" Width="80" x:Name="secondParamTextBox" PreviewTextInput="NumberValidationTextBox"/>
+            <Label Visibility="{Binding EditParamsVisibility}" Content="{Binding ThirdParam}" Width="80" HorizontalAlignment="Center"/>
+            <TextBox Visibility="{Binding EditParamsVisibility}" Width="80" x:Name="thirdParamTextBox" PreviewTextInput="NumberValidationTextBox"/>
+            <Label Visibility="{Binding EditParamsVisibility}" Content="{Binding FourthParam}" Width="80" HorizontalAlignment="Center"/>
+            <TextBox Visibility="{Binding EditParamsVisibility}" Width="80" x:Name="fourthParamTextBox" PreviewTextInput="NumberValidationTextBox"/>
+            <Button Margin="0,10,0,0" Visibility="{Binding EditParamsVisibility}" Click="EditButtonClick" Content="Edytuj" Width="85" Height="30"/>
+        </StackPanel>
+        <ScrollViewer x:Name="CanvasScrollViewer" HorizontalScrollBarVisibility="Visible" 
+                      VerticalScrollBarVisibility="Visible" Grid.Row="2" Grid.Column="1"
+                      >
+            <Canvas x:Name="PaintField" Width="1200" Height="800" Background="White"
+                    MouseMove="MouseMoveInCanvas" MouseLeftButtonUp="MouseUpInCanvas"
+                    MouseLeftButtonDown="MouseDownInCanvas" HorizontalAlignment="Left"  VerticalAlignment="Top" 
+                    />
+        </ScrollViewer>
+    </Grid>
+</Window>
