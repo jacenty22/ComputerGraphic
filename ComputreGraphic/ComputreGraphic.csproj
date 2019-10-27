@@ -74,6 +74,9 @@
     <Compile Include="QualityDialog.xaml.cs">
       <DependentUpon>QualityDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RGBCubeWindow.xaml.cs">
+      <DependentUpon>RGBCubeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ShapeCreator.cs" />
     <Page Include="ColorPicker.xaml">
       <SubType>Designer</SubType>
@@ -92,6 +95,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="QualityDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RGBCubeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

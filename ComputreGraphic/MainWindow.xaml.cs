@@ -301,6 +301,13 @@ namespace ComputreGraphic
             ColorPicker colorPicker = new ColorPicker();
             colorPicker.ShowDialog();
         }
+
+        private void OpenRGBCubeWindow(object sender, RoutedEventArgs e)
+        {
+            RGBCubeWindow rgbWindow = new RGBCubeWindow();
+            rgbWindow.ShowDialog();
+
+        }
     }
 }
 

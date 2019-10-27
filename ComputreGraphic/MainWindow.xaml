@@ -32,6 +32,7 @@
             </MenuItem>
             <MenuItem Header="_Kolor">
                 <MenuItem FontSize="13" Header="Wybierz kolor" Click="OpenColorPicker"/>
+                <MenuItem FontSize="13" Header="Kostka RGB" Click="OpenRGBCubeWindow"/>
             </MenuItem>
         </Menu>
 

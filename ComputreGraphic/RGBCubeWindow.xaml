@@ -1,0 +1,102 @@
+﻿<Window x:Class="ComputreGraphic.RGBCubeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ComputreGraphic"
+        mc:Ignorable="d"
+        Title="RGBCubeWindow" Height="450" Width="800">
+    <Grid MouseLeftButtonDown="Viewport3DOnPreviewMouseLeftButtonDown" 
+                    MouseLeftButtonUp="Viewport3DOnPreviewMouseLeftButtonUp"
+                    MouseMove="Viewport3DOnPreviewMouseMove">
+
+        <Viewport3D x:Name="RGBViewPort"
+                    >
+            <Viewport3D.Camera>
+                <PerspectiveCamera x:Name="Camera" Position="6 5 4" LookDirection="-6 -5 -4">
+
+                    <PerspectiveCamera.Transform>
+                        <RotateTransform3D >
+                            <RotateTransform3D.Rotation>
+                                <AxisAngleRotation3D Axis="{Binding AxisVector}"
+                             Angle="{Binding Rotation}"/>
+                            </RotateTransform3D.Rotation>
+                        </RotateTransform3D>
+                    </PerspectiveCamera.Transform>
+
+                </PerspectiveCamera>
+            </Viewport3D.Camera>
+            <Viewport3D.Children>
+                <ModelVisual3D>
+                    <ModelVisual3D.Content>
+                        <Model3DGroup>
+                            <!--RED Side-->
+    
+                            <DirectionalLight Color="#FF0000" Direction="0,0,-1"/>
+                            <SpotLight Color="#0000ff" Position="0,1,4" Direction="0,0,-1" OuterConeAngle="67.4" InnerConeAngle="36.86"/>
+                            <SpotLight Color="#00FF00" Position="1,0,4" Direction="0,0,-1" OuterConeAngle="67.4" InnerConeAngle="36.86"/>       
+                            
+                            <!--RED Backside-->
+    
+                            <SpotLight Color="#0000ff" Position="0,1,-4" Direction="0,0,1" OuterConeAngle="67.4" InnerConeAngle="36.86"/>
+                            <SpotLight Color="#00FF00" Position="1,0,-4" Direction="0,0,1" OuterConeAngle="67.4" InnerConeAngle="36.86"/>
+
+                            <!--GREEN Side-->
+
+                            <DirectionalLight Color="#00FF00" Direction="-1,0,0"/>
+                            <SpotLight Color="Red" Position="4,0,1" Direction="-1,0,0" OuterConeAngle="67.4" InnerConeAngle="36.86"/>
+                            <SpotLight Color="Blue" Position="4,1,0" Direction="-1,0,0" OuterConeAngle="67.4" InnerConeAngle="36.86"/>         
+                            
+                            <!--GREEN Backside-->
+
+                            <SpotLight Color="Red" Position="-4,0,1" Direction="1,0,0" OuterConeAngle="67.4" InnerConeAngle="36.86"/>
+                            <SpotLight Color="Blue" Position="-4,1,0" Direction="1,0,0" OuterConeAngle="67.4" InnerConeAngle="36.86"/>
+
+                            <!--BLUE Side-->
+
+                            <DirectionalLight Color="#0000FF" Direction="0,-1,0"/>
+                            <SpotLight Color="#FF0000" Position="0,4,1" Direction="0,-1,0" OuterConeAngle="67.4" InnerConeAngle="36.86"/>
+                            <SpotLight Color="#00FF00" Position="1,4,0" Direction="0,-1,0" OuterConeAngle="67.4" InnerConeAngle="36.86"/>
+                            
+                            <!--BLUE Backside-->
+
+                            <SpotLight Color="#FF0000" Position="0,-4,1" Direction="0,1,0" OuterConeAngle="67.4" InnerConeAngle="36.86"/>
+                            <SpotLight Color="#00FF00" Position="1,-4,0" Direction="0,1,0" OuterConeAngle="67.4" InnerConeAngle="36.86"/>
+
+                        </Model3DGroup>
+
+                    </ModelVisual3D.Content>
+                </ModelVisual3D>
+            </Viewport3D.Children>
+
+
+
+            <!--<Viewport3D.Triggers>
+                    <EventTrigger RoutedEvent="Viewport3D.Loaded">
+                        <BeginStoryboard>
+                            <Storyboard x:Name="storyBoard">
+
+                                -->
+            <!-- This animation animates the Rotation property of the RotateTransform
+                       causing the 3D shape to rotate and wobble as the rotation angle and 
+                       axis are animated. -->
+            <!--
+                                <Rotation3DAnimation 
+                   Storyboard.TargetName="myRotateTransform3D"
+                   Storyboard.TargetProperty="Rotation" 
+                   AutoReverse="True"  RepeatBehavior="Forever">
+                                    <Rotation3DAnimation.From>
+                                        <AxisAngleRotation3D Axis="0,3,0" Angle="-60" />
+                                    </Rotation3DAnimation.From>
+                                    <Rotation3DAnimation.To>
+                                        <AxisAngleRotation3D Axis="1,0,1" Angle="60" />
+                                    </Rotation3DAnimation.To>
+                                </Rotation3DAnimation>
+
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Viewport3D.Triggers>-->
+        </Viewport3D>
+    </Grid>
+</Window>
