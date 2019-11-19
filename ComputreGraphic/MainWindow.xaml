@@ -70,6 +70,7 @@
             <Label Content="Funkcja myszy"/>
             <RadioButton GroupName="MouseHover" x:Name="RadioButtonDraw" Checked="ChangeMouseFunction" Content="Rysowanie"/>
             <RadioButton GroupName="MouseHover" x:Name="RadioButtonEdit" Checked="ChangeMouseFunction" Content="Edycja"/>
+            <RadioButton GroupName="MouseHover" x:Name="RadioButtonBezier" Checked="ChangeMouseFunction" Content="Beziera"/>
             <Label Visibility="{Binding EditParamsVisibility}" Content="{Binding FirstParam}" Width="80" HorizontalAlignment="Center" Margin="0,20,0,0"/>
             <TextBox Visibility="{Binding EditParamsVisibility}" Width="80" x:Name="firstParamTextBox" PreviewTextInput="NumberValidationTextBox"/>
             <Label Visibility="{Binding EditParamsVisibility}" Content="{Binding SecondParam}" Width="80" HorizontalAlignment="Center"/>
@@ -86,6 +87,7 @@
             <Canvas x:Name="PaintField" Width="1200" Height="800" Background="White"
                     MouseMove="MouseMoveInCanvas" MouseLeftButtonUp="MouseUpInCanvas"
                     MouseLeftButtonDown="MouseDownInCanvas" HorizontalAlignment="Left"  VerticalAlignment="Top" 
+                    MouseRightButtonDown="MouseRightClick"
                     />
         </ScrollViewer>
     </Grid>

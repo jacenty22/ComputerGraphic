@@ -22,9 +22,9 @@ namespace ComputreGraphic
     {
         #region Enums
         private enum ShapeToDraw { Rectangle = 0, Circle, Line };
-        private enum MouseFunction { None, Edit, Draw };
+        private enum MouseFunction { None, Edit, Draw, Bezier };
 
-        private enum ResizeDirection { None, NW, NE, SE, SW};
+        private enum ResizeDirection { None, NW, NE, SE, SW };
         #endregion
 
         #region Fields
@@ -169,6 +169,15 @@ namespace ComputreGraphic
             PaintField.Children.Add(resizePointNW);
             PaintField.Children.Add(resizePointSE);
             PaintField.Children.Add(resizePointSW);
+            Pascal = new long[30, 30];
+            for (int j = 0; j < 30; j++)
+            {
+                Pascal[j, 0] = 1;
+                Pascal[j, j] = 1;
+
+                for (int i = 0; i < j - 1; i++)
+                    Pascal[j, i + 1] = Pascal[j - 1, i] + Pascal[j - 1, i + 1];
+            }
         }
         void ChangeShape(object sender, RoutedEventArgs e)
         {
@@ -249,6 +258,10 @@ namespace ComputreGraphic
             else if (sender.Equals(RadioButtonEdit))
             {
                 mouseFunction = MouseFunction.Edit;
+            }
+            else if (sender.Equals(RadioButtonBezier))
+            {
+                mouseFunction = MouseFunction.Bezier;
             }
         }
         private void EditButtonClick(object sender, RoutedEventArgs e)

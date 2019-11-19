@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Shapes;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace ComputreGraphic
 {
@@ -32,6 +33,7 @@ namespace ComputreGraphic
         {
             editShapeIndex = -1;
             resizeDirection = ResizeDirection.None;
+            isMovingBezierEllipse = false;
         }
 
         private void MouseDownInCanvas(object sender, MouseButtonEventArgs e)
@@ -51,7 +53,10 @@ namespace ComputreGraphic
                 PaintField.Children.Add(primitiveShapes[primitiveShapes.Count - 1]);
                 setValuesForNewShape = true;
             }
-
+            else if (mouseFunction == MouseFunction.Bezier)
+            {
+                BezierLeftClickFunction(e);
+            }
         }
 
         private void MouseDownInResizePoint(object sender, MouseButtonEventArgs e)
@@ -81,7 +86,7 @@ namespace ComputreGraphic
                 if (editShapeIndex != -1)
                 {
                     double shiftX = endPoint.X - startPoint.X, shiftY = endPoint.Y - startPoint.Y;
-                    
+
                     var shape = primitiveShapes[editShapeIndex];
                     if (shape.GetType().Name.Equals("Line"))
                     {
@@ -89,7 +94,6 @@ namespace ComputreGraphic
                         (shape as Line).Y1 += shiftY;
                         (shape as Line).X2 += shiftX;
                         (shape as Line).Y2 += shiftY;
-
                     }
                     else
                     {
@@ -110,6 +114,10 @@ namespace ComputreGraphic
                     editShapeIndex = -1;
                     setValuesForNewShape = false;
                 }
+            }
+            else if (mouseFunction == MouseFunction.Bezier)
+            {
+                BezierUIEllipseMove(sender, e);
             }
         }
 
